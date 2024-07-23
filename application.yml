@@ -1,45 +1,50 @@
-ACTIVE_PROFILE: dev
+# config-repo/application.yml
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE:http://localhost:8761/eureka/}
+    fetchRegistry: true
+    registerWithEureka: true
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 30
+    leaseExpirationDurationInSeconds: 90
 
-SERVER_PORT: 9091
+# Nom de domaine
+DOMAINE_NAME: http://localhost:3000
 
-#CONFIG SERVER
-CLOUD_CONFIG_IMPORT_CHECK_ENABLED : false
-
-#CORS
-CORS_ALLOWED_ORIGINS : http://localhost:3000
-
-#EUREKA SERVER
-EUREKA_URL_SERVER: http://localhost:8761/eureka/
-
-#Database server
-DB_SQL_JDBC: postgresql #mysql
-DB_SQL_HOST: localhost
-DB_SQL_PORT: 5432 #3306
-DB_SQL_DATABASE_NAME: authdb
-DB_USERNAME: admin
-DB_PASSWORD: admin
-DB_SQL_DIALECT: org.hibernate.dialect.PostgreSQLDialect #org.hibernate.dialect.MySQL8Dialect
-DB_SHOW_SQL: false
-
-#Server Mail
-SERVER_MAIL_PROTOCOL: smtp
-SERVER_MAIL_HOST: 127.0.0.1
-SERVER_MAIL_PORT: 9025
-SERVER_MAIL_USERNAME: ""
-SERVER_MAIL_PASSWORD: ""
-
-
-#Application
+# Application
 APP_NAME: Lawan
-APP_URL: http://localhost:${SERVER_PORT}
+APP_URL: ${DOMAINE_NAME}
 APP_EMAIL_NOREPLY: no-reply
 APP_EMAIL_CONTACT: contact@kodoops.fr
-APP_MAIL_VERIFY_HOST: http://localhost:${SERVER_PORT}
+APP_MAIL_VERIFY_HOST: ${DOMAINE_NAME}
 APP_MAIL_USERNAME: contact@kodoops.fr
 APP_MAIL_SMTP_AUTH: true
 APP_MAIL_STARTTLS_ENABLED: true
 APP_MAIL_DEBUG: true
 
-#JWT
+# CORS
+CORS_ALLOWED_ORIGINS: ${DOMAINE_NAME}
+
+app:
+  name: ${APP_NAME}
+  url: ${DOMAINE_NAME}
+  email:
+    noreply: ${APP_EMAIL_NOREPLY}
+    contact: ${APP_EMAIL_CONTACT}
+  mail:
+    verify:
+      host: ${DOMAINE_NAME}
+    username: ${APP_MAIL_USERNAME}
+
+# Server Mail
+SERVER_MAIL_PROTOCOL: smtp
+SERVER_MAIL_HOST: smtp4dev
+SERVER_MAIL_PORT: 9025
+SERVER_MAIL_USERNAME: ""
+SERVER_MAIL_PASSWORD: ""
+
+# JWT
 APP_SECURITY_ENCRYPTION_KEY: 33c2c2f640048153d6cd7b3f215e1980d8fd4c4e3735ecb
-APP_SECURITY_EXPIRATION_TIME: 1800000 # 30*60*1000 => 30 Min
+APP_SECURITY_EXPIRATION_TIME: 86400000 # 24h en ms
