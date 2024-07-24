@@ -40,11 +40,6 @@ spring:
     deserialization:
       fail-on-unknown-properties: false
 
-app:
- security:
-   encryption-key: 33c2c2f640048153d6cd7b3f215e1980d8fd4c4e3735ecb
-   expiration-time: 86400000
-
 #ZIPKIN
 management:
   tracing:
@@ -93,6 +88,8 @@ app:
     verify:
       host: ${DOMAINE_NAME}
     username: ${APP_MAIL_USERNAME}
-
+  security:
+    encryption-key: 33c2c2f640048153d6cd7b3f215e1980d8fd4c4e3735ecb
+    expiration-time: 86400000
 
 
