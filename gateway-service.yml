@@ -1,0 +1,26 @@
+#SERVER
+server:
+  port: ${SERVER_PORT:8089}
+
+#SPRING
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: timesheets
+          uri: lb://SERVICE-TIMESHEET
+          predicates:
+            - Path=/timesheets/**
+            - Path=/sheet/weeks/**
+            - Path=/sheet/projects/**
+            - Path=/sheet/activities/**
+            - Path=/sheet/comments/**
+            - Path=/sheet/files/**
+        - id: authenticate
+          uri: lb://SERVICE-AUTHENTICATION
+          predicates:
+            - Path=/authenticate/**
+        - id: collaborators
+          uri: lb://SERVICE-COLLABORATORS
+          predicates:
+            - Path=/collaborators/**
