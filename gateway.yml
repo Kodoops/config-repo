@@ -1,11 +1,11 @@
 #SERVER
-server:
-  port: ${SERVER_PORT:8081}
+# server:
+#   port: ${SERVER_PORT:8081}
 
 #SPRING
 spring:
-  application:
-    name: gateway-service
+  # application:
+  #   name: gateway-service
   cloud:
     gateway:
       routes:
