@@ -4,8 +4,8 @@ server:
 
 #SPRING
 spring:
-  application:
-    name: gateway-service
+  # application:
+  #   name: gateway-service
   cloud:
     gateway:
       routes:
