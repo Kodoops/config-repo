@@ -25,6 +25,11 @@ SERVER_MAIL_PORT: 9025
 SERVER_MAIL_USERNAME: ""
 SERVER_MAIL_PASSWORD: ""
 
+
+# APP_SECURITY_ENCRYPTION_KEY
+# APP_SECURITY_EXPIRATION_TIME
+# EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE
+
 # #########################################
 #       PROPERTIES                        #
 # #########################################
