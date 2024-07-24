@@ -1,8 +1,8 @@
 # config-repo/application-docker.yml
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE:http://registry:8761/eureka/}
+# eureka:
+#   client:
+#     serviceUrl:
+#       defaultZone: ${EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE:http://registry:8761/eureka/}
 
 # CONFIG SERVER URL
 CONFIG_SERVER_URL: http://config:8888
