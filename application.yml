@@ -1,14 +1,8 @@
-# # config-repo/application.yml
-# eureka:
-#   client:
-#     serviceUrl:
-#       defaultZone: ${EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE:http://localhost:8761/eureka/}
-#     fetchRegistry: true
-#     registerWithEureka: true
-#   instance:
-#     preferIpAddress: true
-#     leaseRenewalIntervalInSeconds: 30
-#     leaseExpirationDurationInSeconds: 90
+# config-repo/application.yml
+
+# #########################################
+#       ENV. VARIABLES                    #
+# #########################################
 
 # Nom de domaine
 DOMAINE_NAME: http://localhost:3000
@@ -24,8 +18,70 @@ APP_MAIL_SMTP_AUTH: true
 APP_MAIL_STARTTLS_ENABLED: true
 APP_MAIL_DEBUG: true
 
-# CORS
-CORS_ALLOWED_ORIGINS: ${DOMAINE_NAME}
+# Server Mail
+SERVER_MAIL_PROTOCOL: smtp
+SERVER_MAIL_HOST: smtp4dev
+SERVER_MAIL_PORT: 9025
+SERVER_MAIL_USERNAME: ""
+SERVER_MAIL_PASSWORD: ""
+
+# #########################################
+#       PROPERTIES                        #
+# #########################################
+
+spring:
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      fail-on-empty-beans: false
+      close-closeable: true
+      flush-after-write-value: true
+      write-date-keys-as-timestamps: false
+    deserialization:
+      fail-on-unknown-properties: false
+
+app:
+ security:
+   encryption-key: 33c2c2f640048153d6cd7b3f215e1980d8fd4c4e3735ecb
+   expiration-time: 86400000
+
+#ZIPKIN
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+# ACTUATOR
+  endpoints:
+    web:
+      exposure:
+        include: health, info  # Expose uniquement les endpoints de santé et d'informations
+      base-path: /actuator  # Définit le chemin de base pour les endpoints
+  endpoint:
+    health:
+      show-details: when-authorized  # Affiche les détails uniquement pour les utilisateurs autorisés
+
+#CORS 
+cors:
+  allowed:
+    origins: ${DOMAINE_NAME}
+
+#DEBUG
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
+
+# eureka:
+#   client:
+#     serviceUrl:
+#       defaultZone: ${EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE:http://localhost:8761/eureka/}
+#     fetchRegistry: true
+#     registerWithEureka: true
+#   instance:
+#     preferIpAddress: true
+#     leaseRenewalIntervalInSeconds: 30
+#     leaseExpirationDurationInSeconds: 90
+
 
 app:
   name: ${APP_NAME}
@@ -38,13 +94,5 @@ app:
       host: ${DOMAINE_NAME}
     username: ${APP_MAIL_USERNAME}
 
-# Server Mail
-SERVER_MAIL_PROTOCOL: smtp
-SERVER_MAIL_HOST: smtp4dev
-SERVER_MAIL_PORT: 9025
-SERVER_MAIL_USERNAME: ""
-SERVER_MAIL_PASSWORD: ""
 
-# JWT
-APP_SECURITY_ENCRYPTION_KEY: 33c2c2f640048153d6cd7b3f215e1980d8fd4c4e3735ecb
-APP_SECURITY_EXPIRATION_TIME: 86400000 # 24h en ms
+
