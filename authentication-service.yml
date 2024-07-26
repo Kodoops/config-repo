@@ -1,0 +1,50 @@
+#Database server
+DB_SQL_JDBC: postgresql #mysql
+DB_SQL_HOST: localhost
+DB_SQL_PORT: 5432 #3306
+DB_SQL_DATABASE_NAME: authdb
+DB_USERNAME: admin
+DB_PASSWORD: admin
+DB_SQL_DIALECT: org.hibernate.dialect.PostgreSQLDialect #org.hibernate.dialect.MySQL8Dialect
+DB_SHOW_SQL: false
+
+#Server Mail
+SERVER_MAIL_PROTOCOL: smtp
+SERVER_MAIL_HOST: 127.0.0.1
+SERVER_MAIL_PORT: 9025
+SERVER_MAIL_USERNAME: ""
+SERVER_MAIL_PASSWORD: ""
+
+
+#SPRING
+spring:  
+  datasource:
+    url: jdbc:${DB_SQL_JDBC}://${DB_SQL_HOST}:${DB_SQL_PORT}/${DB_SQL_DATABASE_NAME}?createDatabaseIfNoExist=true
+    password: ${DB_PASSWORD}
+    username: ${DB_USERNAME}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: ${DB_SQL_DIALECT}
+        format_sql: true
+    show-sql: ${DB_SHOW_SQL}
+  sql:
+    init:
+      mode: never
+      continue-on-error: false
+      schema-locations: classpath:/data/schema.sql
+      data-locations: classpath:/data/data.sql
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+  mail:
+    protocol: ${SERVER_MAIL_PROTOCOL}
+    host: ${SERVER_MAIL_HOST}
+    port: ${SERVER_MAIL_PORT}
+    username: ${SERVER_MAIL_USERNAME}
+    password: ${SERVER_MAIL_PASSWORD}
