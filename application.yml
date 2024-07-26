@@ -101,7 +101,7 @@ app:
     debug: ${APP_MAIL_DEBUG}
   security:
     encryption-key: 33c2c2f640048153d6cd7b3f215e1980d8fd4c4e3735ecb
-    expiration-time: 86400000
+    expiration-time: 60000 #86400000
 
 
 
