@@ -91,10 +91,19 @@ app:
     contact: ${APP_EMAIL_CONTACT}
   mail:
     verify:
-      host: ${DOMAINE_NAME}
+      host: ${APP_MAIL_VERIFY_HOST}
     username: ${APP_MAIL_USERNAME}
+    # MAIL PROPERTIES
+    smtp:
+      auth: ${APP_MAIL_SMTP_AUTH}
+      starttls.enable: ${APP_MAIL_STARTTLS_ENABLED}
+    debug: ${APP_MAIL_DEBUG}
   security:
     encryption-key: 33c2c2f640048153d6cd7b3f215e1980d8fd4c4e3735ecb
     expiration-time: 86400000
+
+
+
+  
 
 
