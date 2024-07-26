@@ -104,6 +104,15 @@ app:
 
 
 
+
+# DB_SQL_JDBC: postgresql #mysql
+# DB_SQL_HOST: localhost
+# DB_SQL_PORT: 5432 #3306
+# DB_SQL_DATABASE_NAME: authdb
+# DB_USERNAME: admin
+# DB_PASSWORD: admin
+# DB_SQL_DIALECT: org.hibernate.dialect.PostgreSQLDialect #org.hibernate.dialect.MySQL8Dialect
+# DB_SHOW_SQL: false
   
 
 
