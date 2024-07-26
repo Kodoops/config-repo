@@ -17,7 +17,7 @@ spring:
             - Path=/sheet/comments/**
             - Path=/sheet/files/**
         - id: authenticate
-          uri: lb://SERVICE-AUTHENTICATION
+          uri: lb://AUTHENTICATION-SERVICE
           predicates:
             - Path=/authenticate/**
         - id: collaborators
